@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends StatefulWidget implements PreferredSizeWidget {
-  const AppBarWidget({Key? key}) : super(key: key);
-
+  const AppBarWidget({Key? key,required this.title}) : super(key: key);
+ final String title;
   @override
   _AppBarWidgetState createState() => _AppBarWidgetState();
 
@@ -27,9 +27,9 @@ class _AppBarWidgetState extends State<AppBarWidget> {
           ),
         ],
       ),
-      title: const Text(
-        "Home",
-        style: TextStyle(fontWeight: FontWeight.bold),
+    title: Text(
+        widget.title, // Accessing title through widget property
+        style: const TextStyle(fontWeight: FontWeight.bold),
       ),
       centerTitle: true,
       actions: [

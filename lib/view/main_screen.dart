@@ -1,9 +1,11 @@
+import 'package:find_me/view/ProductSearchFolder/searchfakeproducts.dart';
 import 'package:find_me/view/chatbot.dart';
+import 'package:find_me/view/scan/barcode_scan_page.dart';
 import 'package:find_me/view/widgets/Category.dart';
 import 'package:find_me/view/widgets/appbarwideget.dart';
 import 'package:find_me/view/widgets/drawerwidget.dart';
-import 'package:find_me/view/search.dart';
-import 'package:find_me/view/widgets/searchfieldwidget.dart';
+import 'package:find_me/view/ProductSearchFolder/search.dart';
+import 'package:find_me/view/ProductSearchFolder/searchfieldwidget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -59,7 +61,9 @@ class _MainScreenPageState extends State<MainScreenPage> {
     return Scaffold(
       backgroundColor: const Color(0xFFFDF1E1),
       drawer: const DrawerWidget(),
-      appBar: const AppBarWidget(),
+      appBar: const AppBarWidget(
+        title: 'Home',
+      ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
@@ -111,7 +115,7 @@ class _MainScreenPageState extends State<MainScreenPage> {
                     Navigator.push(
                         context,
                         CupertinoPageRoute(
-                            builder: ((context) => const SearchPage())));
+                            builder: ((context) => SearchFakeProducts())));
                   },
                   child: const Text(
                     "Search",
@@ -132,7 +136,12 @@ class _MainScreenPageState extends State<MainScreenPage> {
                 height: 45,
                 child: CupertinoButton(
                   color: const Color(0xFFDF9A4F),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                            builder: ((context) => const BarCodeScan())));
+                  },
                   child: const Text(
                     "Scan Barcode",
                     style: TextStyle(

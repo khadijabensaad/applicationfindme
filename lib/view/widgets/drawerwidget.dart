@@ -1,7 +1,9 @@
+import 'package:find_me/view/ProductDetailsFolder/favorites.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 class DrawerWidget extends StatefulWidget {
@@ -28,6 +30,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
 
   @override
   Widget build(BuildContext context) {
+    var get = Get;
     return Drawer(
       width: MediaQuery.of(context).size.width * 0.8,
       backgroundColor: const Color(0xFFFDF1E1),
@@ -105,19 +108,21 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                 fontFamily: 'Poppins'),
           ),
         ),
-        ListTile(
-          onTap: () {},
-          leading: const Icon(
-            CupertinoIcons.heart,
-            color: Colors.black,
-          ),
-          title: const Text(
-            "Favorites",
-            style: TextStyle(
-                color: Colors.black,
-                fontSize: 15,
-                fontWeight: FontWeight.w600,
-                fontFamily: 'Poppins'),
+        InkWell(
+          onTap: () => Get.to(() => FavoritesPage()),
+          child: const ListTile(
+            leading: Icon(
+              CupertinoIcons.heart,
+              color: Colors.black,
+            ),
+            title: Text(
+              "Favorites",
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                  fontFamily: 'Poppins'),
+            ),
           ),
         ),
         ListTile(

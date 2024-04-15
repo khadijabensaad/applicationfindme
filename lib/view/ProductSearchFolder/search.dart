@@ -1,13 +1,16 @@
 import 'dart:io';
+import 'package:find_me/controller/searchpagecontroller.dart';
+import 'package:find_me/view/ProductSearchFolder/searchfakeproducts.dart';
 import 'package:find_me/view/widgets/appbarwideget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class SearchPage extends StatefulWidget {
   const SearchPage({super.key});
-
+  // SearchPageController controller = Get.put(SearchPageController());
   @override
   State<SearchPage> createState() => _SearchPageState();
 }
@@ -20,7 +23,9 @@ class _SearchPageState extends State<SearchPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFFDF1E1),
-      appBar: const AppBarWidget(),
+      appBar: const AppBarWidget(
+        title: 'Find Me',
+      ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Column(
@@ -53,7 +58,7 @@ class _SearchPageState extends State<SearchPage> {
                         Navigator.push(
                             context,
                             CupertinoPageRoute(
-                                builder: ((context) => const SearchPage())));
+                                builder: ((context) => SearchFakeProducts())));
                       },
                     ),
                     suffixIcon: IconButton(

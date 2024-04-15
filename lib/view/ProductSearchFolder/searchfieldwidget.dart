@@ -1,6 +1,6 @@
 import 'dart:io';
-import 'dart:typed_data';
-import 'package:find_me/view/search.dart';
+import 'package:find_me/view/ProductSearchFolder/search.dart';
+import 'package:find_me/view/ProductSearchFolder/searchfakeproducts.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -41,8 +41,10 @@ class _SearchFieldWidgetState extends State<SearchFieldWidget> {
           ),
           splashRadius: 10,
           onPressed: () {
-            Navigator.push(context,
-                CupertinoPageRoute(builder: ((context) => SearchPage())));
+            Navigator.push(
+                context,
+                CupertinoPageRoute(
+                    builder: ((context) => SearchFakeProducts())));
           },
         ),
         suffixIcon: IconButton(
@@ -65,7 +67,7 @@ class _SearchFieldWidgetState extends State<SearchFieldWidget> {
           ),
           splashRadius: 10,
           onPressed: () async {
-         /*   PermissionStatus microphoneStatus =
+            PermissionStatus microphoneStatus =
                 await Permission.microphone.request();
 
             if (microphoneStatus == PermissionStatus.granted) {
@@ -80,7 +82,7 @@ class _SearchFieldWidgetState extends State<SearchFieldWidget> {
             }
             if (microphoneStatus == PermissionStatus.permanentlyDenied) {
               openAppSettings();
-            }*/
+            }
             setState(() {});
           },
         ),
@@ -124,7 +126,28 @@ class _SearchFieldWidgetState extends State<SearchFieldWidget> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 15, vertical: 0),
                       child: ElevatedButton.icon(
-                        onPressed: () {
+                        onPressed: () async {
+                          PermissionStatus camerStatus =
+                              await Permission.camera.request();
+
+                          if (camerStatus == PermissionStatus.granted) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text("Permission Granted"),
+                              ),
+                            );
+                          }
+                          if (camerStatus == PermissionStatus.denied) {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              content:
+                                  Text("You need to provide camera permission"),
+                            ));
+                          }
+                          if (camerStatus ==
+                              PermissionStatus.permanentlyDenied) {
+                            openAppSettings();
+                          }
                           _pickImageFromCamera(); //camera
                         },
                         icon: const Icon(
